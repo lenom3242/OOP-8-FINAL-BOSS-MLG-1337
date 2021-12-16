@@ -7,7 +7,7 @@ private:
 public:
 	//void printvalue() { cout << value << endl; }
 	MadInt(int value=0) : value(value){}
-	MadInt(const MadInt &obj):value(obj.value){} //при создании нового объекта выполняется
+	MadInt(const MadInt &obj):value(obj.value){} //copy constructor only perfoms when new object is created
 	friend MadInt operator+(const MadInt&, const MadInt&);
 	friend MadInt operator-(const MadInt&, const MadInt&);
 	friend MadInt operator*(const MadInt&, const MadInt&);
@@ -114,17 +114,17 @@ MadInt operator--(MadInt& o, int a) {
 }
 void main() {
 	srand(time(0));
-	/*Создаём три переменных, складываем, выводим на экран*/
+	/*Create 3 vars, do some math then cout them out*/
 	MadInt x(100), y(25), z(-3), test(0);
 	cout << x + y - z << endl;
 	cout << x * y / z << endl;
 	cout << (x + y) / (z * z) << endl;
-	/*Создаём массив на 10 элементов, с рандомом*/
+	/*Create array up to 10 digits, is nice*/
 	MadInt** array = new MadInt * [10];
 	for (int i = 0; i < 10; i++) {
 		array[i] = new MadInt(rand() %200-100);
 	}
-	/*находим минимальное и максимальное числа*/
+	/*find min and max mfs*/
 	MadInt biggest=-101, smallest = 201;
 	for (int i = 0; i < 10; i++) {
 		if (*array[i] < biggest)
@@ -136,7 +136,7 @@ void main() {
 			smallest = *array[i];
 	}
 	cout << endl << smallest << endl;
-	/*находим количество повторений числа*/
+	/*find how many time our digits had appeared*/
 	cout << "______________________________________________\n";
 	MadInt lol[200]{};
 	for (int i = 0; i < 200; i++)
@@ -147,14 +147,14 @@ void main() {
 		if (lol[i] == 0)
 			cout << i - 100 << " " << lol[i] << endl;
 	cout << "______________________________________________\n";
-	/*смотрим совпадает ли первым и последний элементы массивов*/
+	/*compare first and last one of the digits in array*/
 	if (*array[0] == *array[9])
 		cout << "ne sovpadaut\n";
 	else
 		cout << "sovpadaut\n";
 
 	cout << endl;
-	/*тест оператора cin, cout*/
+	/*does  cin, cout work?*/
 	cout << "Enter five new elements\n";
 	MadInt smallarray[5];
 	for (int i = 0; i < 5; i++)
@@ -166,7 +166,7 @@ void main() {
 	for (int i = 0; i < 5; i++) {
 		cout << "M[" << i << "] = " << smallarray[i] << endl;
 	}
-	/*явное преобразование в int*/
+	/*yavnoe preobrazovanie v int*/
 	int k = int(x);
 	cout << k;
 	
